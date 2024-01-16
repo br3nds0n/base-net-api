@@ -1,12 +1,26 @@
-using BaseNet.Infra.Contexts;
-using Microsoft.EntityFrameworkCore;
+using System.Reflection;
+using BaseNet.Infra.Configs;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var currentAssembly = Assembly.GetAssembly(typeof(Program))!;
+
+var configuracao = new Configuracao
+{
+    Assemblies = currentAssembly
+        .GetReferencedAssemblies()
+        .Where(e => e.FullName.StartsWith("BaseNet"))
+        .Select(Assembly.Load)
+        .Union(new[] { currentAssembly })
+        .ToList(),
+    ConnectionString = builder.Configuration.GetConnectionString("Default")
+};
+
+builder.Services.AddSingleton<IConfiguracao>(configuracao);
+
+builder.Services.AddLibs(configuracao);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
 
 var app = builder.Build();
 
@@ -17,9 +31,6 @@ app.UseSwaggerUI(c =>
 });
 
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
-
-public partial class Program { }
