@@ -18,6 +18,7 @@ namespace BaseNet.Infra.Configs
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BaseNet API", Version = "v1" });
             });
+            
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(configuracao.ConnectionString));
 
