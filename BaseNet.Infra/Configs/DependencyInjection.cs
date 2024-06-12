@@ -2,6 +2,7 @@ using System.IO.Abstractions;
 using BaseNet.Infra.Contexts;
 using BaseNet.Infra.Repositories;
 using BaseNet.Libs.Data.SDK;
+using MediatR.Extensions.FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
@@ -46,8 +47,9 @@ namespace BaseNet.Infra.Configs
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BaseNet API", Version = "v1" });
             });
 
-            services.AddScoped<IFileSystem, FileSystem>();
             services.AddAutoMapper(config.Assemblies);
+            services.AddScoped<IFileSystem, FileSystem>();
+            services.AddFluentValidation(config.Assemblies);
             services.AddPostgresSqlDb<ApplicationDbContext>();
             services.AddRepositories<IAppUnitOfWork, AppUnitOfWork>(config.Assemblies);
 
