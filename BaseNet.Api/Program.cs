@@ -1,11 +1,12 @@
 using System.Reflection;
 using BaseNet.Infra.Configs;
+using BaseNet.Libs.Controller.SDK.Behaviors;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var currentAssembly = Assembly.GetAssembly(typeof(Program))!;
 
-var configuracao = new Configuracao
+var config = new Config
 {
     Assemblies = currentAssembly
         .GetReferencedAssemblies()
@@ -13,12 +14,11 @@ var configuracao = new Configuracao
         .Select(Assembly.Load)
         .Union(new[] { currentAssembly })
         .ToList(),
-    ConnectionString = builder.Configuration.GetConnectionString("Default")
+    OpenBehaviors = new List<Type> { typeof(ValidationBehavior<,>) }
 };
 
-builder.Services.AddSingleton<IConfiguracao>(configuracao);
-
-builder.Services.AddLibs(configuracao);
+builder.Services.AddSingleton<IConfig>(config);
+builder.Services.AddLibs(config);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 

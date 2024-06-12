@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseNet.App", "BaseNet.App\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseNet.Tests", "BaseNet.Tests\BaseNet.Tests.csproj", "{58F5B56D-8B76-456D-AD5B-5F528CD4276F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseNet.Libs", "BaseNet.Libs\BaseNet.Libs.csproj", "{529811B5-3E00-4C5D-AAE5-0D1BC3FC7D7C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{58F5B56D-8B76-456D-AD5B-5F528CD4276F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58F5B56D-8B76-456D-AD5B-5F528CD4276F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58F5B56D-8B76-456D-AD5B-5F528CD4276F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{529811B5-3E00-4C5D-AAE5-0D1BC3FC7D7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{529811B5-3E00-4C5D-AAE5-0D1BC3FC7D7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{529811B5-3E00-4C5D-AAE5-0D1BC3FC7D7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{529811B5-3E00-4C5D-AAE5-0D1BC3FC7D7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

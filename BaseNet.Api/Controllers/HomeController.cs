@@ -1,5 +1,7 @@
-using BaseNet.Infra.Contexts;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+
+using BaseNet.App.Home.Queries.HomeQuery;
 
 namespace BaseNet.API.Controllers
 {
@@ -7,36 +9,18 @@ namespace BaseNet.API.Controllers
     [Route("api/home")]
     public class HomeController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IMediator _mediator;
 
-        public HomeController(ApplicationDbContext context)
+        public HomeController(IMediator mediator)
         {
-            _context = context ?? throw new ArgumentNullException(nameof(context));
+            _mediator = mediator;
         }
 
         [HttpGet]
         public IActionResult Home()
         {
-            try
-            {
-                _context.Database.EnsureCreated();
-
-                return Ok(new
-                {
-                    App = "IWantApp.API",
-                    Status = "Iniciada com sucesso",
-                    Database = "OK"
-                });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new
-                {
-                    App = "IWantApp.API",
-                    Status = $"Erro ao iniciar: {ex.Message}",
-                    Database = "ERROR"
-                });
-            }
+            var result = _mediator.Send(new HomeQuery()).Result;
+            return Ok(result);
         }
     }
 }

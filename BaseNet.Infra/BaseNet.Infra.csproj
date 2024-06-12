@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BaseNet.Domain\BaseNet.Domain.csproj" />
+    <ProjectReference Include="..\BaseNet.Libs\BaseNet.Libs.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,5 +26,6 @@
     </PackageReference>
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="System.IO.Abstractions" Version="19.2.69" />
   </ItemGroup>
 </Project>
