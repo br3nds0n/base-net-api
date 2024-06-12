@@ -3,7 +3,10 @@ WORKDIR /app
 
 COPY . .
 
-RUN dotnet publish -c Release -o out
+RUN dotnet restore
+RUN dotnet build -c Release --no-restore
+
+RUN dotnet publish -c Release -o out --no-build
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
 WORKDIR /app
