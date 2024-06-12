@@ -1,7 +1,16 @@
 # 🚀 CQRS .NET BASE
 
+## ▶ iniciando em desenvolvimento
+Configure as variáveis de ambiente que se encontram no arquivo run-dev.bat
 
-## 🐋 getting started with docker
+```php
+# executando o comando
+$ ./run-dev.bat
+
+# api iniciará em http://localhost:5000/swagger/index.html
+```
+
+## 🐋 iniciando com docker
 
 ```php
 # executando o comando
@@ -11,9 +20,7 @@ $ docker-compose up
 # api iniciará em http://localhost:5000/swagger/index.html
 ```
 
-<br>
-
-## ✍🏼 author
+## ✍🏼 autor
 
 <table>
   <tr>
