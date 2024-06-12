@@ -2,6 +2,7 @@ using System.IO.Abstractions;
 using BaseNet.Infra.Contexts;
 using BaseNet.Infra.Repositories;
 using BaseNet.Libs.Data.SDK;
+using BaseNet.Libs.Job.SDK;
 using MediatR.Extensions.FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
@@ -52,6 +53,7 @@ namespace BaseNet.Infra.Configs
             services.AddFluentValidation(config.Assemblies);
             services.AddPostgresSqlDb<ApplicationDbContext>();
             services.AddRepositories<IAppUnitOfWork, AppUnitOfWork>(config.Assemblies);
+            services.AddHangfireConfiguration(config.CurrentAssembly!, "public", "base-net");
 
             return services;
         }
